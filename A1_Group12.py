@@ -1,3 +1,20 @@
+########################################################
+'''
+The following script takes an element type as input (e.g. IfcDuctSegment) 
+and checks if it is defined on the correct level in the IFC file. 
+If not, it moves the element to the correct level. 
+It also checks the distance between the element
+
+
+
+'''
+########################################################
+
+
+
+
+
+
 import ifcopenshell
 import ifcopenshell.geom
 
@@ -7,9 +24,18 @@ import ifcopenshell.geom
 ifc_file = ifcopenshell.open("/Users/teiturheinesen/Library/CloudStorage/OneDrive-SharedLibraries-DanmarksTekniskeUniversitet/Rasmus Niss Kloppenborg - IFC modeller/25-16-D-MEP.ifc")
 
 
+
+# find etage for elementer og sæt dem ind under etagen hvis de er defineret forkert
+
+# hvis det kører over flere etager skal elementerne sættes ind under bygningen i stedet for en specifik etage
+
+
+
 # i want to check the distance between the ducts and the floor (level) in the ifc file
-hvacElements = ifc_file.by_type("IfcDuctSegment")
- 
+hvacElements = ifc_file.by_type("IfcDuctSegment") + ifc_file.by_type("IfcAirTerminal")
+
+
+
 # Change ifcopenshell.geom settings to use world coordinates instead of local coordinates
 settings = ifcopenshell.geom.settings()
 settings.set(settings.USE_WORLD_COORDS, True)
@@ -46,8 +72,8 @@ for element in hvacElements:
         free_height = element_z - level
         if FreeHeights.get(name) is None:
             FreeHeights[name] = free_height, level, element
-        elif free_height < FreeHeights.get(name)[0]:
-        # elif free_height < FreeHeights.get(name)[0] and free_height > 1:
+        # elif free_height < FreeHeights.get(name)[0]:
+        elif free_height < FreeHeights.get(name)[0] and free_height > 1: # to avoid elements defined to the wrong level
             FreeHeights[name] = free_height, level, element
         else:
             continue
@@ -60,19 +86,27 @@ for name, (free_height, level, element) in FreeHeights.items():
 
 
 
-def ChangeColor(elements):
+def ChangeColor(elements, lowestPoint):
+
     # Create a red RGB color (values between 0–1)
     red_color = ifc_file.create_entity("IfcColourRgb", Name="Red", Red=1.0, Green=0.0, Blue=0.0)
+    yellow_color = ifc_file.create_entity("IfcColourRgb", Name="Yellow", Red=1.0, Green=1.0, Blue=0.0)
 
-    # Create a surface shading style
-    surface_style = ifc_file.create_entity(
-        "IfcSurfaceStyle",
-        Name="RedSurface",
-        Side="BOTH",
-        Styles=[ifc_file.create_entity("IfcSurfaceStyleShading", SurfaceColour=red_color)]
-    )
+    counter = 0
 
     for element in elements:
+        if lowestPoint[counter] < 2.6:
+            color = red_color
+        else:
+            color = yellow_color
+        # Create a surface shading style
+        surface_style = ifc_file.create_entity(
+            "IfcSurfaceStyle",
+            Name="RedSurface",
+            Side="BOTH",
+            Styles=[ifc_file.create_entity("IfcSurfaceStyleShading", SurfaceColour=color)]
+        )
+
         if not element.Representation:
             print(f"No representation for element {element.GlobalId}")
             continue
@@ -91,12 +125,18 @@ def ChangeColor(elements):
             Styles=[surface_style],
             Name=None
         )
+        counter += 1
 
 # Change color of the lowest duct to red in the ifc file
 lowest_duct = [FreeHeights[level][2] for level in FreeHeights]
-ChangeColor(lowest_duct)
+lowestPoint = [FreeHeights[level][0] for level in FreeHeights]
+
+
+ChangeColor(lowest_duct, lowestPoint)
 # print([lowest_duct])
 
 # save the ifc file to desktop
-ifc_file.write("/Users/teiturheinesen/Desktop/TEST2.ifc")
+newFileName = "TEST3.ifc"
+ifc_file.write("/Users/teiturheinesen/Desktop/" + newFileName)
+print("IFC file saved to desktop as " + newFileName)
 
