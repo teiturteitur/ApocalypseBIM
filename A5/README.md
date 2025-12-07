@@ -10,12 +10,9 @@ Another comment suggested that we might consider adding the pressure loss result
 
 We also received suggestions about expanding the tool to handle flowsegments or pipes, which could make the tool applicable beyond ventilation systems. 
 
-**Did the tool address the use case we identified?**
+The tool succeeded to address the use case we identified, even though the scope changed along the way. We originally aimed to check the free height in each space, but as we worked with the IFC data, the use case expandeded into analysing and checking the ventilation system more in depth. The tool supports the intention of identifying modelling mistakes early in the process and helping ensure that the model is built correctly.
 
-Yes, the tool succeeded to address the use case we identified ... 
-
-
-**What stage does the tool you created work in Advanced Building Design (stage A, B, C and/ or D)?**
+The tool mainly supports stage A, in the early design stage, and stage B, with coordination between the ARCH and MEP files. Some features, such as pressure loss calculation and airflow distribution could also relate to stage C with more detailed design. 
 
 ---
 # Individual reflections
