@@ -79,3 +79,28 @@ I have begun looking into FOOS solutions for geometry extraction and modificatio
 In conclusion, I have learned a lot from this course, that I hope to use for future professional and academic endeavors and have become even more interested in the digitilization and automation of the built environment than I was before.
 
 
+## Rasmus Niss Kloppenborg - s203493
+
+### Your learning experience for the concept you focused on.
+
+Before this course, my understanding of BIM was mainly tied to geometry, visualization, and coordination. I saw BIM models primarily as something you interacted with through software interfaces, rather than as structured data that could be queried, analysed, and validated through code. Through working with IFC files and scripting, this perception has changed significantly. I now see BIM much more as an information container than just a 3D model.
+
+Throughout the project, I learned how different elements in an IFC model are connected, how property sets store essential performance data, and how this data can be extracted and evaluated automatically. This has given me a new appreciation of how powerful OpenBIM can be when used for rule-based checking and system validation. Instead of relying solely on visual inspection, it is possible to verify performance, detect inconsistencies, and document errors in a structured and repeatable way.
+
+At the same time, the course also showed me how fragile digital workflows can be. Missing data, incorrect assignments, and inconsistent modelling practices quickly become obstacles when working with automation. This has made me more aware of the importance of modelling discipline and data quality. I still have a lot to learn about scripting and working with larger, more complex models, but I now feel much more confident navigating IFC structures and understanding how BIM data can be used beyond traditional modelling.
+
+### Your process of developing the tutorial
+
+Developing the tutorial was an important part of the learning process for me, as it forced me to step back and look critically at our own workflow. Explaining the logic behind the tool, the assumptions we made, and the technical steps involved helped clarify why we made certain design choices during development. It also revealed which parts of the workflow were intuitive and which relied too much on prior technical knowledge.
+
+Working on the tutorial also increased my understanding of how important communication is when developing digital tools. A tool is only useful if others can understand how to use it, what its limitations are, and what they can expect from the output. Translating code-based logic into a clear written explanation was challenging, but it definitely strengthened my overall understanding of the system we built.
+
+I also appreciated having a lot of freedom in choosing our own use case. This made the work feel more relevant and engaging, because we were not just following a predefined exercise but actually addressing a realistic engineering problem. At times this freedom was also challenging, since it required us to define goals, scope, and priorities ourselves, but that process was valuable from a project-development perspective.
+
+### Your future for Advanced use of OpenBIM
+
+I see many opportunities for using OpenBIM tools in both my remaining studies and my future professional work. Being able to automatically extract and validate information from models can save time, reduce errors, and support better decision-making in early design stages. Especially in disciplines where performance, compliance, and coordination are important, OpenBIM-based workflows offer strong potential.
+
+If I work with system design, analysis, or optimization in my thesis, I could imagine using OpenBIM to verify model assumptions, check data consistency, or support simulation workflows. The ability to connect model data directly to analytical tools is something I now see as a major advantage compared to more traditional, manual approaches.
+
+In a broader perspective, I believe OpenBIM will play an increasingly important role as the construction industry continues to move toward automation and data-driven processes. Understanding how IFC models are structured and how they can be used programmatically gives a strong technical foundation for working with future digital workflows. This course has therefore not only expanded my technical skills, but also my understanding of where the industry is heading and how I can position myself within it.
